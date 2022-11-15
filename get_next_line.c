@@ -6,7 +6,7 @@
 /*   By: elukutin <elukutin@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:38:04 by elukutin          #+#    #+#             */
-/*   Updated: 2022/11/14 20:36:16 by elukutin         ###   ########.fr       */
+/*   Updated: 2022/11/15 13:03:31 by elukutin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,24 @@ static int	str_check(char *str, int c)
 	return (0);
 }
 
-void *delete (char **line)
+void	*delete(char **line)
 {
 	free(*line);
 	*line = NULL;
 	return (NULL);
 }
 
-
-static int check(char **line, int fd)
+static int	buf_check(char **line, int fd)
 {
-	char 		*buf;
-	int b;
+	char	buf[BUFFER_SIZE + 1];
+	int		b;
 
-	buf = malloc(BUFFER_SIZE + 1);
 	while (!str_check(*line, '\n'))
 	{
-
 		b = read(fd, buf, BUFFER_SIZE);
 		if (b == -1)
 		{
-			delete(line);
-			free(buf);
+			delete (line);
 			return (0);
 		}
 		buf[b] = '\0';
@@ -55,7 +51,6 @@ static int check(char **line, int fd)
 			break ;
 		*line = ft_strjoin(*line, buf);
 	}
-	free(buf);
 	return (1);
 }
 
@@ -67,8 +62,8 @@ static char	*search(int fd)
 
 	if (!line)
 		line = ft_strdup("");
-	if (!check(&line, fd))
-		return NULL;
+	if (!buf_check(&line, fd))
+		return (NULL);
 	if (!str_check(line, '\n'))
 	{
 		if (ft_strlen(line) > 0)
@@ -77,7 +72,7 @@ static char	*search(int fd)
 			line = NULL;
 			return (ret);
 		}
-		return (delete(&line));
+		return (delete (&line));
 	}
 	newline = ft_strchr(line, '\n');
 	ret = ft_substr(line, 0, ft_strlen(line) - ft_strlen(newline));
@@ -87,7 +82,7 @@ static char	*search(int fd)
 }
 
 char	*get_next_line(int fd)
-{	
+{
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	return (search(fd));
