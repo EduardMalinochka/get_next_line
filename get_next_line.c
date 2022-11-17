@@ -6,7 +6,7 @@
 /*   By: elukutin <elukutin@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:38:04 by elukutin          #+#    #+#             */
-/*   Updated: 2022/11/15 13:03:31 by elukutin         ###   ########.fr       */
+/*   Updated: 2022/11/17 14:17:00 by elukutin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,6 @@ static int	str_check(char *str, int c)
 	return (0);
 }
 
-void	*delete(char **line)
-{
-	free(*line);
-	*line = NULL;
-	return (NULL);
-}
-
 static int	buf_check(char **line, int fd)
 {
 	char	buf[BUFFER_SIZE + 1];
@@ -43,7 +36,8 @@ static int	buf_check(char **line, int fd)
 		b = read(fd, buf, BUFFER_SIZE);
 		if (b == -1)
 		{
-			delete (line);
+			free(*line);
+			*line = NULL;
 			return (0);
 		}
 		buf[b] = '\0';
@@ -61,7 +55,7 @@ static char	*search(int fd)
 	static char	*line;
 
 	if (!line)
-		line = ft_strdup("");
+		line = ft_strdup("", 0, 0);
 	if (!buf_check(&line, fd))
 		return (NULL);
 	if (!str_check(line, '\n'))
@@ -72,12 +66,13 @@ static char	*search(int fd)
 			line = NULL;
 			return (ret);
 		}
-		return (delete (&line));
+		free(line);
+		line = NULL;
+		return (NULL);
 	}
 	newline = ft_strchr(line, '\n');
-	ret = ft_substr(line, 0, ft_strlen(line) - ft_strlen(newline));
-	free(line);
-	line = ft_strdup(newline + 1);
+	ret = ft_substr(line, 0, ft_strlen(line) - ft_strlen(newline) + 1);
+	line = ft_strdup(newline + 1, line, 1);
 	return (ret);
 }
 

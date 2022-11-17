@@ -6,7 +6,7 @@
 /*   By: elukutin <elukutin@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:38:16 by elukutin          #+#    #+#             */
-/*   Updated: 2022/11/15 13:17:15 by elukutin         ###   ########.fr       */
+/*   Updated: 2022/11/17 13:50:11 by elukutin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 char	*get_next_line(int fd);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(char *s1, const char *s2);
-char	*ft_strdup(const char *s1);
+char	*ft_strdup(const char *s1, char *line, int boo);
 size_t	ft_strlen(const char *str);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 

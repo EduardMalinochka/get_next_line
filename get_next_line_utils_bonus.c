@@ -6,7 +6,7 @@
 /*   By: elukutin <elukutin@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:13:11 by elukutin          #+#    #+#             */
-/*   Updated: 2022/11/15 13:16:46 by elukutin         ###   ########.fr       */
+/*   Updated: 2022/11/17 14:19:09 by elukutin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ size_t	ft_strlen(const char *str)
 	return (len);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1, char *line, int boo)
 {
 	size_t	len;
 	size_t	i;
@@ -55,6 +55,8 @@ char	*ft_strdup(const char *s1)
 		i++;
 	}
 	res[i] = '\0';
+	if (boo == 1)
+		free (line);
 	return (res);
 }
 

@@ -6,7 +6,7 @@
 /*   By: elukutin <elukutin@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 17:13:11 by elukutin          #+#    #+#             */
-/*   Updated: 2022/11/15 12:58:35 by elukutin         ###   ########.fr       */
+/*   Updated: 2022/11/17 14:14:23 by elukutin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ size_t	ft_strlen(const char *str)
 	return (len);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1, char *line, int boo)
 {
 	size_t	len;
 	size_t	i;
@@ -55,6 +55,8 @@ char	*ft_strdup(const char *s1)
 		i++;
 	}
 	res[i] = '\0';
+	if (boo == 1)
+		free (line);
 	return (res);
 }
 
@@ -87,7 +89,7 @@ char	*ft_strjoin(char *s1, const char *s2)
 	return (res);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
 	char	*res;
 	size_t	i;
@@ -97,7 +99,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (0);
 	if (ft_strlen(s) < len)
 		len = ft_strlen(s);
-	res = malloc(len + 2);
+	res = malloc(len + 1);
 	if (!res)
 		return (NULL);
 	while (i < len && s[start] != '\0' && start < ft_strlen(s))
@@ -106,7 +108,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		i++;
 		start++;
 	}
-	res[i] = '\n';
-	res[i + 1] = '\0';
+	res[i] = '\0';
 	return (res);
 }

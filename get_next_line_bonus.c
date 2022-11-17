@@ -6,7 +6,7 @@
 /*   By: elukutin <elukutin@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:38:04 by elukutin          #+#    #+#             */
-/*   Updated: 2022/11/15 13:19:46 by elukutin         ###   ########.fr       */
+/*   Updated: 2022/11/17 14:16:43 by elukutin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static char	*search(int fd)
 	static char	*line[1024];
 
 	if (!line[fd])
-		line[fd] = ft_strdup("");
+		line[fd] = ft_strdup("", 0, 0);
 	if (!buf_check(&line[fd], fd))
 		return (NULL);
 	if (!str_check(line[fd], '\n'))
@@ -76,8 +76,7 @@ static char	*search(int fd)
 	}
 	newline = ft_strchr(line[fd], '\n');
 	ret = ft_substr(line[fd], 0, ft_strlen(line[fd]) - ft_strlen(newline));
-	free(line[fd]);
-	line[fd] = ft_strdup(newline + 1);
+	line[fd] = ft_strdup(newline + 1, line[fd], 1);
 	return (ret);
 }
 
