@@ -6,7 +6,7 @@
 /*   By: elukutin <elukutin@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:38:04 by elukutin          #+#    #+#             */
-/*   Updated: 2022/12/09 21:13:15 by elukutin         ###   ########.fr       */
+/*   Updated: 2023/01/03 12:06:01 by elukutin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,4 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	return (search(fd));
-}
-
-#include <stdio.h>
-#include <fcntl.h>
-int main()
-{
-	char *res;
-	int fd = open("get_next_line.c", O_RDONLY);
-	res = get_next_line(fd);
-	while (res)
-	{
-		printf("%s",res);
-		res = get_next_line(fd);
-	}
 }

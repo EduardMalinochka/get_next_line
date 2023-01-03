@@ -6,17 +6,17 @@
 /*   By: elukutin <elukutin@student.42istanbul.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:38:16 by elukutin          #+#    #+#             */
-/*   Updated: 2023/01/03 12:05:23 by elukutin         ###   ########.fr       */
+/*   Updated: 2023/01/03 12:05:55 by elukutin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 
+# include <stdlib.h>
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
-# include <stdlib.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 123
@@ -30,4 +30,3 @@ size_t	ft_strlen(const char *str);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif
-
